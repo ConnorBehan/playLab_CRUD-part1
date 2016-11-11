@@ -6,7 +6,7 @@ import javax.persistence.*;
 import play.data.format.*;
 import play.data.validation.*;
 
-import com.avaje.eban.*;
+import com.avaje.ebean.*;
 
 //Product Entity managed by the ORM
 @Entity
@@ -16,14 +16,21 @@ public class Product extends Model {
 	//Primary key
 	@Id
 	private Long id;
+	
+	@Constraints.Required
 	private String name;
+	
+	@Constraints.Required
 	private String description;
+	
+	@Constraints.Required
 	private int stock;
+	
+	@Constraints.Required
 	private double price;
 
 	//Default constructor
-	public Products(){
-	
+	public Product(){
 	}
 
 	//Constructor to initialise object
@@ -35,45 +42,63 @@ public class Product extends Model {
 	this.price = price;
 	}
 
+	public static Finder<Long.Product> find = new Finder<Long.Product>(Product.class);
+	//Find all products in the database
+	//Filter product name
+	public static List<Product> findAll(){
+	return Product.find.all();
+	}
+	
+	public static List<Product> findAll(){
+		return Product.find.all();
+
+	
+	}
+
+
+	
+
 	public Long getId(){
 	return id;
-}
+	}
 
 	public void setId(Long id){
 	this.id = id;
-}
+	}
 
 	public String getName(){
 	return name;
-}
+	}
 
-	public void setName(){
-	return this.name;
-}
+	public void setName(String name){
+	this.name = name;
+	}
 
 	public String getDescription(){
 	return description;
-}
+	}
 
-	public void setDescription(){
-	return this.description;
-}
+	public void setDescription(String description){
+	this.description = description;
+	}
 
 	public int getStock(){
 	return stock;
-}
+	}
 
-	public void setStock(){
+	public void setStock(int stock){
 	this.stock = stock;
-}
+	}
 
 	public double getPrice(){
 	return price;
-}
+	}
 
-	public void setPrice(){
+	public void setPrice(double price){
 	this.price = price;
-}
+	}
+
+	}
 
 
 
